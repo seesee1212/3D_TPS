@@ -9,8 +9,8 @@ public class MONSTER : MonoBehaviour
     public string monsterId;
 
     public bool isDead = false;
+    public bool isSpawned = false; // 몬스터가 생성되었는지 여부
 
-    protected bool isSpawned = false; // 몬스터가 생성되었는지 여부
     private IFactory<MONSTER> factory;
 
     public virtual void Initalize(Transform player)
@@ -36,7 +36,7 @@ public class MONSTER : MonoBehaviour
         var damageFont = MANAGER.POOL.pooling_OBJ("DamageTMP").Get((value) =>
         {
             value.GetComponent<DamageTMP>().Initalize(
-                Base_Canvas.instance.transform,
+                Base_Canvas.instance.HOLDERLAYER,
                 transform.position,
                 dmg.ToString());
         });
